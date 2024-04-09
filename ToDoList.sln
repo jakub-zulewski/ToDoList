@@ -3,7 +3,45 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FE6ACA0B-6C23-4465-AC24-6C1F6167D5E1}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoList.Web", "src\ToDoList.Web\ToDoList.Web.csproj", "{171781F6-8103-422C-9BA4-9C8B260B151A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoList.Domain", "src\ToDoList.Domain\ToDoList.Domain.csproj", "{8FC4CFA6-03B3-4955-B949-258BBC31CD00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoList.Application", "src\ToDoList.Application\ToDoList.Application.csproj", "{99E94D1A-02E0-4038-B4AD-EDDAF34AD300}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoList.Infrastructure", "src\ToDoList.Infrastructure\ToDoList.Infrastructure.csproj", "{3721A96E-8948-42DE-AF2D-2F510989C174}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{171781F6-8103-422C-9BA4-9C8B260B151A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{171781F6-8103-422C-9BA4-9C8B260B151A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{171781F6-8103-422C-9BA4-9C8B260B151A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{171781F6-8103-422C-9BA4-9C8B260B151A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FC4CFA6-03B3-4955-B949-258BBC31CD00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FC4CFA6-03B3-4955-B949-258BBC31CD00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FC4CFA6-03B3-4955-B949-258BBC31CD00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FC4CFA6-03B3-4955-B949-258BBC31CD00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99E94D1A-02E0-4038-B4AD-EDDAF34AD300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99E94D1A-02E0-4038-B4AD-EDDAF34AD300}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99E94D1A-02E0-4038-B4AD-EDDAF34AD300}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99E94D1A-02E0-4038-B4AD-EDDAF34AD300}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3721A96E-8948-42DE-AF2D-2F510989C174}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3721A96E-8948-42DE-AF2D-2F510989C174}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3721A96E-8948-42DE-AF2D-2F510989C174}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3721A96E-8948-42DE-AF2D-2F510989C174}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
