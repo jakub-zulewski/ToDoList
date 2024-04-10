@@ -6,7 +6,7 @@ internal static class SeederExtension
 {
 	internal static async Task SeedData(this WebApplication webApplication)
 	{
-		using var scope = webApplication.Services.CreateScope();
+		using var scope = webApplication.Services.CreateAsyncScope();
 
 		var seeder = scope.ServiceProvider.GetRequiredService<ToDoItemSeeder>();
 

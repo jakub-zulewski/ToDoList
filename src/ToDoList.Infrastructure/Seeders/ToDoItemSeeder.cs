@@ -19,6 +19,7 @@ public class ToDoItemSeeder(DataContext dataContext, ILogger<ToDoItemSeeder> log
 
 			return;
 		}
+
 		if (await _dataContext.ToDoItems.AnyAsync())
 		{
 			_logger.LogInformation("To do items already exist in database. Skipping seed data.");
@@ -42,7 +43,7 @@ public class ToDoItemSeeder(DataContext dataContext, ILogger<ToDoItemSeeder> log
 			},
 			new() {
 				Title = "To do task 3 completed. Title.",
-				Description = "To do task 2 completed. Description.",
+				Description = "To do task 3 completed. Description.",
 				CreatedAt = DateTime.UtcNow,
 				DueDate = DateTime.UtcNow.AddDays(-1),
 				CompletedAt = DateTime.UtcNow,
