@@ -1,4 +1,5 @@
 using ToDoList.Infrastructure;
+using ToDoList.Web.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
 	name: "default",
 	pattern: "{controller=Home}/{action=Index}/{id?}");
+
+await app.SeedData();
 
 app.Run();
 

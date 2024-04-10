@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using ToDoList.Infrastructure.Persistence;
+using ToDoList.Infrastructure.Seeders;
 
 namespace ToDoList.Infrastructure;
 
@@ -15,5 +16,7 @@ public static class InfrastructureServicesExtensions
 		{
 			options.UseNpgsql(configuration.GetConnectionString("ToDoList"));
 		});
+
+		services.AddScoped<ToDoItemSeeder>();
 	}
 }
