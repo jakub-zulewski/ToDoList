@@ -1,7 +1,12 @@
+using ToDoList.Infrastructure;
+using ToDoList.Web.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddInfrastructureServices(builder.Configuration);
 
 var app = builder.Build();
 
@@ -23,6 +28,10 @@ app.UseAuthorization();
 app.MapControllerRoute(
 	name: "default",
 	pattern: "{controller=Home}/{action=Index}/{id?}");
+
+await app.MigrateDatabase();
+
+await app.SeedData();
 
 app.Run();
 
