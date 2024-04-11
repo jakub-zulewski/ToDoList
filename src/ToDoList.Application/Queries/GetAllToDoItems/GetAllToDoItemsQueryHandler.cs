@@ -16,6 +16,6 @@ public class GetAllToDoItemsQueryHandler(IToDoItemRepository toDoItemRepository,
 	public async Task<IEnumerable<ToDoItemDTO>> Handle(
 		GetAllToDoItemsQuery request, CancellationToken cancellationToken)
 	{
-		return _mapper.Map<IEnumerable<ToDoItemDTO>>(await _toDoItemRepository.GetAll());
+		return _mapper.Map<IEnumerable<ToDoItemDTO>>(await _toDoItemRepository.GetAllAsync());
 	}
 }

@@ -15,7 +15,7 @@ public class CreateToDoItemCommandHandler(IToDoItemRepository toDoItemRepository
 
 	public async Task Handle(CreateToDoItemCommand request, CancellationToken cancellationToken)
 	{
-		await _toDoItemRepository.Create(_mapper.Map<ToDoItem>(request));
+		await _toDoItemRepository.CreateAsync(_mapper.Map<ToDoItem>(request));
 
 		await _toDoItemRepository.SaveChangesAsync();
 	}

@@ -16,6 +16,6 @@ public class GetToDoItemByIdQueryHandler(IToDoItemRepository toDoItemRepository,
 	public async Task<ToDoItemDTO> Handle(
 		GetToDoItemByIdQuery request, CancellationToken cancellationToken)
 	{
-		return _mapper.Map<ToDoItemDTO>(await _toDoItemRepository.GetById(request.Id));
+		return _mapper.Map<ToDoItemDTO>(await _toDoItemRepository.GetByIdAsync(request.Id));
 	}
 }

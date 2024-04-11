@@ -11,7 +11,7 @@ public class EditToDoItemHandler(IToDoItemRepository toDoItemRepository)
 
 	public async Task Handle(EditToDoItemCommand request, CancellationToken cancellationToken)
 	{
-		var toDoItem = await _toDoItemRepository.GetById(request.Id);
+		var toDoItem = await _toDoItemRepository.GetByIdAsync(request.Id);
 
 		toDoItem.Title = request.Title;
 		toDoItem.Description = request.Description;

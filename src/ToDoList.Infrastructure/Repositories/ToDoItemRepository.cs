@@ -10,19 +10,19 @@ internal class ToDoItemRepository(DataContext dataContext) : IToDoItemRepository
 {
 	private readonly DataContext _dataContext = dataContext;
 
-	public async Task Create(ToDoItem toDoItem)
+	public async Task CreateAsync(ToDoItem toDoItem)
 	{
 		await _dataContext.ToDoItems.AddAsync(toDoItem);
 	}
 
 	public async Task DeleteAsync(Guid id)
 	{
-		var toDoItem = await GetById(id);
+		var toDoItem = await GetByIdAsync(id);
 
 		_dataContext.ToDoItems.Remove(toDoItem);
 	}
 
-	public async Task<IEnumerable<ToDoItem>> GetAll()
+	public async Task<IEnumerable<ToDoItem>> GetAllAsync()
 	{
 		return await _dataContext.ToDoItems
 			.OrderBy(x => x.DueDate)
@@ -37,7 +37,7 @@ internal class ToDoItemRepository(DataContext dataContext) : IToDoItemRepository
 			.ToListAsync();
 	}
 
-	public async Task<ToDoItem> GetById(Guid id)
+	public async Task<ToDoItem> GetByIdAsync(Guid id)
 	{
 		return await _dataContext.ToDoItems.FirstAsync(x => x.Id == id);
 	}
