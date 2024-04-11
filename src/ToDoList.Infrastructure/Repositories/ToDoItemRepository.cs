@@ -23,4 +23,9 @@ internal class ToDoItemRepository(DataContext dataContext) : IToDoItemRepository
 			.OrderBy(x => x.DueDate)
 			.ToListAsync();
 	}
+
+	public async Task<ToDoItem> GetById(Guid id)
+	{
+		return await _dataContext.ToDoItems.FirstAsync(x => x.Id == id);
+	}
 }

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using ToDoList.Application.Commands.CreateToDoItem;
 using ToDoList.Application.Queries.GetAllToDoItems;
+using ToDoList.Application.Queries.GetToDoItemById;
 
 namespace ToDoList.Web.Controllers;
 
@@ -19,6 +20,12 @@ public class ToDoController(IMediator mediator) : Controller
 	public IActionResult Create()
 	{
 		return View();
+	}
+
+	[Route("task/{id:guid}")]
+	public async Task<IActionResult> Details(Guid id)
+	{
+		return View(await _mediator.Send(new GetToDoItemByIdQuery(id)));
 	}
 
 	[HttpPost]
