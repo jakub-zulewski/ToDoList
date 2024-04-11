@@ -1,4 +1,6 @@
-﻿using ToDoList.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+
+using ToDoList.Domain.Entities;
 using ToDoList.Domain.Interfaces;
 using ToDoList.Infrastructure.Persistence;
 
@@ -13,5 +15,12 @@ internal class ToDoItemRepository(DataContext dataContext) : IToDoItemRepository
 		await _dataContext.ToDoItems.AddAsync(toDoItem);
 
 		await _dataContext.SaveChangesAsync();
+	}
+
+	public async Task<IEnumerable<ToDoItem>> GetAll()
+	{
+		return await _dataContext.ToDoItems
+			.OrderBy(x => x.DueDate)
+			.ToListAsync();
 	}
 }

@@ -9,6 +9,11 @@ public class ToDoController(IToDoItemService toDoItemService) : Controller
 {
 	private readonly IToDoItemService _toDoItemService = toDoItemService;
 
+	public async Task<IActionResult> Index()
+	{
+		return View(await _toDoItemService.GetAll());
+	}
+
 	public IActionResult Create()
 	{
 		return View();
@@ -24,6 +29,6 @@ public class ToDoController(IToDoItemService toDoItemService) : Controller
 
 		await _toDoItemService.Create(toDoItemDTO);
 
-		return Ok();
+		return RedirectToAction(nameof(Index));
 	}
 }

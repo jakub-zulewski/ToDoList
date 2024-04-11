@@ -10,5 +10,7 @@ internal class ToDoItemMappingProfile : Profile
 	public ToDoItemMappingProfile()
 	{
 		CreateMap<ToDoItemDTO, ToDoItem>();
+
+		CreateMap<ToDoItem, ToDoItemDTO>();
 	}
 }

@@ -17,4 +17,9 @@ public class ToDoItemService(IToDoItemRepository toDoItemRepository, IMapper map
 	{
 		await _toDoItemRepository.Create(_mapper.Map<ToDoItem>(toDoItemDTO));
 	}
+
+	public async Task<IEnumerable<ToDoItemDTO>> GetAll()
+	{
+		return _mapper.Map<IEnumerable<ToDoItemDTO>>(await _toDoItemRepository.GetAll());
+	}
 }
