@@ -55,11 +55,15 @@
                     @item.DueDate
                 </td>
                 <td>
-                    <a asp-controller="ToDo" asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Details</a>
-                    <span> | </span>
-                    <a asp-controller="ToDo" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
-                    <span> | </span>
-                    <a href="#" class="btn btn-danger">Delete</a>
+                    <div class="btn-group">
+                        <a asp-controller="ToDo" asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Details</a>
+                        <span class="mx-2"> | </span>
+                        <a asp-controller="ToDo" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                        <span class="mx-2"> | </span>
+                        <form asp-action="Delete" asp-route-id="@item.Id" method="post">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
                 </td>
             </tr>
         }

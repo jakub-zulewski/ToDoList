@@ -15,6 +15,13 @@ internal class ToDoItemRepository(DataContext dataContext) : IToDoItemRepository
 		await _dataContext.ToDoItems.AddAsync(toDoItem);
 	}
 
+	public async Task DeleteAsync(Guid id)
+	{
+		var toDoItem = await GetById(id);
+
+		_dataContext.ToDoItems.Remove(toDoItem);
+	}
+
 	public async Task<IEnumerable<ToDoItem>> GetAll()
 	{
 		return await _dataContext.ToDoItems

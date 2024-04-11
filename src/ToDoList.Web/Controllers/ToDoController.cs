@@ -5,6 +5,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 using ToDoList.Application.Commands.CreateToDoItem;
+using ToDoList.Application.Commands.DeleteToDoItem;
 using ToDoList.Application.Commands.EditToDoItem;
 using ToDoList.Application.Queries.GetAllToDoItems;
 using ToDoList.Application.Queries.GetToDoItemById;
@@ -65,6 +66,15 @@ public class ToDoController(IMediator mediator, IMapper mapper) : Controller
 		}
 
 		await _mediator.Send(editToDoItemCommand);
+
+		return RedirectToAction(nameof(Index));
+	}
+
+	[HttpPost]
+	[Route("task/delete/{id:guid}")]
+	public async Task<IActionResult> Delete(Guid id)
+	{
+		await _mediator.Send(new DeleteToDoItemCommand(id));
 
 		return RedirectToAction(nameof(Index));
 	}

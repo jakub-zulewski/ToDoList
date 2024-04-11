@@ -7,5 +7,6 @@ public interface IToDoItemRepository
 	Task Create(ToDoItem toDoItem);
 	Task<IEnumerable<ToDoItem>> GetAll();
 	Task<ToDoItem> GetById(Guid id);
+	Task DeleteAsync(Guid id);
 	Task SaveChangesAsync();
 }
