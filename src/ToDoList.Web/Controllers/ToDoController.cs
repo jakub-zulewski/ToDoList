@@ -1,17 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
 
-using ToDoList.Application.DTOs.ToDo;
-using ToDoList.Application.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+
+using ToDoList.Application.Commands.CreateToDoItem;
+using ToDoList.Application.Queries.GetAllToDoItems;
 
 namespace ToDoList.Web.Controllers;
 
-public class ToDoController(IToDoItemService toDoItemService) : Controller
+public class ToDoController(IMediator mediator) : Controller
 {
-	private readonly IToDoItemService _toDoItemService = toDoItemService;
+	private readonly IMediator _mediator = mediator;
 
 	public async Task<IActionResult> Index()
 	{
-		return View(await _toDoItemService.GetAll());
+		return View(await _mediator.Send(new GetAllToDoItemsQuery()));
 	}
 
 	public IActionResult Create()
@@ -20,14 +22,14 @@ public class ToDoController(IToDoItemService toDoItemService) : Controller
 	}
 
 	[HttpPost]
-	public async Task<IActionResult> Create(ToDoItemDTO toDoItemDTO)
+	public async Task<IActionResult> Create(CreateToDoItemCommand createToDoItemCommand)
 	{
 		if (!ModelState.IsValid)
 		{
 			return View();
 		}
 
-		await _toDoItemService.Create(toDoItemDTO);
+		await _mediator.Send(createToDoItemCommand);
 
 		return RedirectToAction(nameof(Index));
 	}

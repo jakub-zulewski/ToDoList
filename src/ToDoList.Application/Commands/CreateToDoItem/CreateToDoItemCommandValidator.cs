@@ -1,10 +1,12 @@
 ﻿using FluentValidation;
 
-namespace ToDoList.Application.DTOs.ToDo;
+using ToDoList.Application.DTOs.ToDo;
 
-public class ToDoItemDTOValidator : AbstractValidator<ToDoItemDTO>
+namespace ToDoList.Application.Commands.CreateToDoItem;
+
+public class CreateToDoItemCommandValidator : AbstractValidator<CreateToDoItemCommand>
 {
-	public ToDoItemDTOValidator()
+	public CreateToDoItemCommandValidator()
 	{
 		RuleFor(x => x.Title)
 			.NotEmpty().WithMessage("Title cannot be empty.")
