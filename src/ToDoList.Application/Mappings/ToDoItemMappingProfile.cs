@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 
+using ToDoList.Application.Commands.EditToDoItem;
 using ToDoList.Application.DTOs.ToDo;
 using ToDoList.Domain.Entities;
 
@@ -12,5 +13,7 @@ internal class ToDoItemMappingProfile : Profile
 		CreateMap<ToDoItemDTO, ToDoItem>();
 
 		CreateMap<ToDoItem, ToDoItemDTO>();
+
+		CreateMap<ToDoItemDTO, EditToDoItemCommand>();
 	}
 }

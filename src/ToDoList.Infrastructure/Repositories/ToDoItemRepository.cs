@@ -13,8 +13,6 @@ internal class ToDoItemRepository(DataContext dataContext) : IToDoItemRepository
 	public async Task Create(ToDoItem toDoItem)
 	{
 		await _dataContext.ToDoItems.AddAsync(toDoItem);
-
-		await _dataContext.SaveChangesAsync();
 	}
 
 	public async Task<IEnumerable<ToDoItem>> GetAll()
@@ -27,5 +25,10 @@ internal class ToDoItemRepository(DataContext dataContext) : IToDoItemRepository
 	public async Task<ToDoItem> GetById(Guid id)
 	{
 		return await _dataContext.ToDoItems.FirstAsync(x => x.Id == id);
+	}
+
+	public async Task SaveChangesAsync()
+	{
+		await _dataContext.SaveChangesAsync();
 	}
 }

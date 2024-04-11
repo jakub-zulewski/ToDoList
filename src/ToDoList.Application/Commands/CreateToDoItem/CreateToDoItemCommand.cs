@@ -6,5 +6,4 @@ namespace ToDoList.Application.Commands.CreateToDoItem;
 
 public class CreateToDoItemCommand : ToDoItemDTO, IRequest
 {
-
 }

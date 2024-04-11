@@ -1,16 +1,20 @@
-﻿using MediatR;
+﻿using AutoMapper;
+
+using MediatR;
 
 using Microsoft.AspNetCore.Mvc;
 
 using ToDoList.Application.Commands.CreateToDoItem;
+using ToDoList.Application.Commands.EditToDoItem;
 using ToDoList.Application.Queries.GetAllToDoItems;
 using ToDoList.Application.Queries.GetToDoItemById;
 
 namespace ToDoList.Web.Controllers;
 
-public class ToDoController(IMediator mediator) : Controller
+public class ToDoController(IMediator mediator, IMapper mapper) : Controller
 {
 	private readonly IMediator _mediator = mediator;
+	private readonly IMapper _mapper = mapper;
 
 	public async Task<IActionResult> Index()
 	{
@@ -22,10 +26,20 @@ public class ToDoController(IMediator mediator) : Controller
 		return View();
 	}
 
-	[Route("task/{id:guid}")]
+	[Route("task/details/{id:guid}")]
 	public async Task<IActionResult> Details(Guid id)
 	{
 		return View(await _mediator.Send(new GetToDoItemByIdQuery(id)));
+	}
+
+	[Route("task/edit/{id:guid}")]
+	public async Task<IActionResult> Edit(Guid id)
+	{
+		var toDoItemDTO = await _mediator.Send(new GetToDoItemByIdQuery(id));
+
+		var model = _mapper.Map<EditToDoItemCommand>(toDoItemDTO);
+
+		return View(model);
 	}
 
 	[HttpPost]
@@ -37,6 +51,20 @@ public class ToDoController(IMediator mediator) : Controller
 		}
 
 		await _mediator.Send(createToDoItemCommand);
+
+		return RedirectToAction(nameof(Index));
+	}
+
+	[HttpPost]
+	[Route("task/edit/{id:guid}")]
+	public async Task<IActionResult> Edit(Guid id, EditToDoItemCommand editToDoItemCommand)
+	{
+		if (!ModelState.IsValid)
+		{
+			return View(editToDoItemCommand);
+		}
+
+		await _mediator.Send(editToDoItemCommand);
 
 		return RedirectToAction(nameof(Index));
 	}

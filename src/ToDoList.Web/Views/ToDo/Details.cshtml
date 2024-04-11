@@ -1,4 +1,6 @@
-﻿@model ToDoList.Application.DTOs.ToDo.ToDoItemDTO
+﻿@using ToDoList.Application.DTOs.ToDo
+
+@model ToDoItemDTO
 
 @{
     ViewData["Title"] = "Details";
@@ -41,6 +43,7 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="ToDo" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    <span> | </span>
+    <a asp-controller="ToDo" asp-action="Index">Back to List</a>
 </div>
