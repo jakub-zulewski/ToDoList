@@ -22,7 +22,23 @@ public class ToDoController(IMediator mediator, IMapper mapper) : Controller
 	{
 		if (!date.HasValue)
 		{
-			return View(await _mediator.Send(new GetAllToDoItemsQuery()));
+			var toDos = await _mediator.Send(new GetAllToDoItemsQuery());
+
+			var toDoItemsCount = toDos
+				.Where(x => x.DueDate == DateOnly.FromDateTime(DateTime.UtcNow.AddDays(1)) &&
+					x.IsCompleted == false)
+				.Count();
+
+			if (toDoItemsCount > 0)
+			{
+				ViewBag.Tasks = $"You have {toDoItemsCount} tasks planned for tomorrow!";
+			}
+			else
+			{
+				ViewBag.Tasks = null;
+			}
+
+			return View(toDos);
 		}
 
 		ViewBag.Date = date.Value;
