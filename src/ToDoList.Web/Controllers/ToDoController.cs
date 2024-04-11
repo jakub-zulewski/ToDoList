@@ -8,6 +8,7 @@ using ToDoList.Application.Commands.CreateToDoItem;
 using ToDoList.Application.Commands.DeleteToDoItem;
 using ToDoList.Application.Commands.EditToDoItem;
 using ToDoList.Application.Queries.GetAllToDoItems;
+using ToDoList.Application.Queries.GetAllToDoItemsByDate;
 using ToDoList.Application.Queries.GetToDoItemById;
 
 namespace ToDoList.Web.Controllers;
@@ -17,9 +18,16 @@ public class ToDoController(IMediator mediator, IMapper mapper) : Controller
 	private readonly IMediator _mediator = mediator;
 	private readonly IMapper _mapper = mapper;
 
-	public async Task<IActionResult> Index()
+	public async Task<IActionResult> Index(DateOnly? date)
 	{
-		return View(await _mediator.Send(new GetAllToDoItemsQuery()));
+		if (!date.HasValue)
+		{
+			return View(await _mediator.Send(new GetAllToDoItemsQuery()));
+		}
+
+		ViewBag.Date = date.Value;
+
+		return View(await _mediator.Send(new GetAllToDoItemByDateQuery(date.Value)));
 	}
 
 	public IActionResult Create()
