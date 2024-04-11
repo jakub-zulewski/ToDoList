@@ -17,10 +17,9 @@ public partial class InitialMigration : Migration
 				Id = table.Column<Guid>(type: "uuid", nullable: false),
 				Title = table.Column<string>(type: "text", nullable: false),
 				Description = table.Column<string>(type: "text", nullable: true),
-				CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-				DueDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-				IsCompleted = table.Column<bool>(type: "boolean", nullable: false),
-				CompletedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+				CreatedAt = table.Column<DateOnly>(type: "date", nullable: false),
+				DueDate = table.Column<DateOnly>(type: "date", nullable: false),
+				IsCompleted = table.Column<bool>(type: "boolean", nullable: false)
 			},
 			constraints: table =>
 			{

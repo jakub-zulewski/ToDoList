@@ -1,3 +1,4 @@
+using ToDoList.Application;
 using ToDoList.Infrastructure;
 using ToDoList.Web.Extensions;
 
@@ -7,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddInfrastructureServices(builder.Configuration);
+
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 

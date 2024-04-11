@@ -1,0 +1,86 @@
+﻿@using ToDoList.Application.DTOs.ToDo
+
+@model IEnumerable<ToDoItemDTO>
+
+@{
+    ViewData["Title"] = "To do list";
+}
+
+<h1>To do list</h1>
+<hr />
+<a asp-action="Create" class="btn btn-primary">Create New To Do</a>
+<form class="mt-3" method="get" asp-action="Index">
+    <label class="form-label">Select date: </label>
+    <input class="form-control" type="date" name="date" />
+    <button class="btn btn-primary mt-3 text-center" type="submit">Go to</button>
+</form>
+
+@if (ViewBag.Date is not null)
+{
+    <h4 class="mt-3">Displaying tasks for day: @ViewBag.Date</h4>
+}
+else
+{
+    <h4 class="mt-3">All tasks</h4>
+}
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>
+                Done
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Date
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (item.IsCompleted)
+                    {
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z" />
+                        </svg>
+                    }
+                    else
+                    {
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                        </svg>
+                    }
+                </td>
+                <td class="@(item.IsCompleted ? "text-decoration-line-through" : null)">
+                    @item.Title
+                </td>
+                <td class="@(item.IsCompleted ? "text-decoration-line-through" : null)">
+                    @item.Description
+                </td>
+                <td class="@(item.IsCompleted ? "text-decoration-line-through" : null)">
+                    @item.DueDate
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a asp-controller="ToDo" asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Details</a>
+                        <span class="mx-2"> | </span>
+                        <a asp-controller="ToDo" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                        <span class="mx-2"> | </span>
+                        <form asp-action="Delete" asp-route-id="@item.Id" method="post">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

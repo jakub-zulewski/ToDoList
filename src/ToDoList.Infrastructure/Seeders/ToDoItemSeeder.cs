@@ -32,21 +32,20 @@ public class ToDoItemSeeder(DataContext dataContext, ILogger<ToDoItemSeeder> log
 			new() {
 				Title = "To do task 1. Title.",
 				Description = "To do task 1. Description.",
-				CreatedAt = DateTime.UtcNow,
-				DueDate = DateTime.UtcNow.AddDays(2)
+				CreatedAt = DateOnly.FromDateTime(DateTime.UtcNow),
+				DueDate = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(2))
 			},
 			new() {
 				Title = "To do task 2. Title.",
 				Description = "To do task 2. Description.",
-				CreatedAt = DateTime.UtcNow,
-				DueDate = DateTime.UtcNow.AddDays(5)
+				CreatedAt = DateOnly.FromDateTime(DateTime.UtcNow),
+				DueDate = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(5))
 			},
 			new() {
 				Title = "To do task 3 completed. Title.",
 				Description = "To do task 3 completed. Description.",
-				CreatedAt = DateTime.UtcNow,
-				DueDate = DateTime.UtcNow.AddDays(-1),
-				CompletedAt = DateTime.UtcNow,
+				CreatedAt = DateOnly.FromDateTime(DateTime.UtcNow),
+				DueDate = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(-1)),
 				IsCompleted = true
 			}
 		};
