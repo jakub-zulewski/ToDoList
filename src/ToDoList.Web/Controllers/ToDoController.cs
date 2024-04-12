@@ -13,10 +13,12 @@ using ToDoList.Application.Queries.GetToDoItemById;
 
 namespace ToDoList.Web.Controllers;
 
-public class ToDoController(IMediator mediator, IMapper mapper) : Controller
+public class ToDoController(IMediator mediator, IMapper mapper, ILogger<ToDoController> logger)
+	: Controller
 {
 	private readonly IMediator _mediator = mediator;
 	private readonly IMapper _mapper = mapper;
+	private readonly ILogger<ToDoController> _logger = logger;
 
 	public async Task<IActionResult> Index(DateOnly? date)
 	{
@@ -77,6 +79,8 @@ public class ToDoController(IMediator mediator, IMapper mapper) : Controller
 
 		await _mediator.Send(createToDoItemCommand);
 
+		_logger.LogInformation($"Task {createToDoItemCommand.Title} has been created.");
+
 		return RedirectToAction(nameof(Index));
 	}
 
@@ -91,6 +95,8 @@ public class ToDoController(IMediator mediator, IMapper mapper) : Controller
 
 		await _mediator.Send(editToDoItemCommand);
 
+		_logger.LogInformation($"Task {editToDoItemCommand.Id} has been edited.");
+
 		return RedirectToAction(nameof(Index));
 	}
 
@@ -99,6 +105,8 @@ public class ToDoController(IMediator mediator, IMapper mapper) : Controller
 	public async Task<IActionResult> Delete(Guid id)
 	{
 		await _mediator.Send(new DeleteToDoItemCommand(id));
+
+		_logger.LogInformation($"Task {id} has been deleted.");
 
 		return RedirectToAction(nameof(Index));
 	}

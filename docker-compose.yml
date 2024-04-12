@@ -10,6 +10,8 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: todoapp
+    volumes:
+      - ./.container/Logs:/app/Logs
     networks:
       - proxy
     depends_on:
