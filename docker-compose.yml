@@ -1,0 +1,27 @@
+version: "3"
+
+networks:
+  proxy:
+    external: true
+
+services:
+  todoapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: todoapp
+    networks:
+      - proxy
+    depends_on:
+      - todoappdatabase
+  todoappdatabase:
+    image: postgres:latest
+    container_name: todoappdatabase
+    environment:
+      - POSTGRES_DB=ToDoApp
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=zaq1@WSX
+    volumes:
+      - ./.container/todoappdatabase:/var/lib/postgresql/data
+    networks:
+      - proxy
