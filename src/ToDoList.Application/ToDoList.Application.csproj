@@ -16,5 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ToDoList.Domain\ToDoList.Domain.csproj" />
   </ItemGroup>
-
+	<ItemGroup>
+		<InternalsVisibleTo Include="ToDoList.Application.UnitTests"/>
+	</ItemGroup>
 </Project>

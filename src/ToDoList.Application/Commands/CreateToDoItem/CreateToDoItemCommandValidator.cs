@@ -2,9 +2,9 @@
 
 namespace ToDoList.Application.Commands.CreateToDoItem;
 
-public class CreateToDoItemCommandValidator : AbstractValidator<CreateToDoItemCommand>
+internal class CreateToDoItemCommandValidator : AbstractValidator<CreateToDoItemCommand>
 {
-	public CreateToDoItemCommandValidator()
+	internal CreateToDoItemCommandValidator()
 	{
 		RuleFor(x => x.Title)
 			.NotEmpty().WithMessage("Title cannot be empty.")

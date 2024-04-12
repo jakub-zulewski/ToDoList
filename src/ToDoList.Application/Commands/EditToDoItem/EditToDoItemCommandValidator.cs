@@ -2,9 +2,9 @@
 
 namespace ToDoList.Application.Commands.EditToDoItem;
 
-public class EditToDoItemCommandValidator : AbstractValidator<EditToDoItemCommand>
+internal class EditToDoItemCommandValidator : AbstractValidator<EditToDoItemCommand>
 {
-	public EditToDoItemCommandValidator()
+	internal EditToDoItemCommandValidator()
 	{
 		RuleFor(x => x.Title)
 			.NotEmpty().WithMessage("Title cannot be empty.")
