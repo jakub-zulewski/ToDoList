@@ -363,4 +363,3 @@ MigrationBackup/
 FodyWeavers.xsd
 
 .container
-/src/ToDoList.Web/appsettings.json

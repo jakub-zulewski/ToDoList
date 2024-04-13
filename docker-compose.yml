@@ -10,6 +10,8 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: todoapp
+    ports:
+      - 8080:8080
     volumes:
       - ./.container/Logs:/app/Logs
     networks:
